@@ -51,14 +51,6 @@ class AddViewController: UIViewController {
         button.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
         return button
     }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupView()
-        setConstraints()
-        // Do any additional setup after loading the view.
-    }
-    
     @objc private func saveButtonPressed() {
         let imageBSet = ["b1", "b2", "b3"]
         let imageGSet = ["g1", "g2", "g3"]
@@ -75,6 +67,14 @@ class AddViewController: UIViewController {
             navigationController?.popViewController(animated: false)
         }
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+        setConstraints()
+    }
+    
+    
     
     private func setupView() {
         title = "New contact"
@@ -115,6 +115,7 @@ class AddViewController: UIViewController {
     }
 }
 
+//MARK: - Picker View Delegates
 extension AddViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1

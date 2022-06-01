@@ -13,14 +13,12 @@ class TableViewCell: UITableViewCell {
     
     private let contactImageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(systemName: "person.crop.square")
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Subzero Uchicha"
         label.textAlignment = .center
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +27,6 @@ class TableViewCell: UITableViewCell {
     
     private let contactNumber: UILabel = {
         let label = UILabel()
-        label.text = "87771234567"
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

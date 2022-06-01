@@ -64,7 +64,6 @@ class DetailViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
     @objc private func callButtonPressed() {
         let vc = UIViewController()
         vc.view.backgroundColor = .green
@@ -80,13 +79,12 @@ class DetailViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
     @objc private func deleteButtonPressed() {
         contactsUpdater?.deleteContactBy(number: contactId)
         navigationController?.popViewController(animated: true)
     }
     
-    @objc private let updateButton: UIButton = {
+    private let updateButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Update", for: .normal)
         button.tintColor = .white
@@ -95,7 +93,6 @@ class DetailViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
     @objc private func updateButtonPressed() {
         contactsUpdater?.updateTableView(number: contactId,
                                          newName: nameTextField.text ?? "",
@@ -119,7 +116,6 @@ class DetailViewController: UIViewController {
     }
     
     @objc private func editContact() {
-        
         nameLabel.isHidden = true
         contactNumber.isHidden = true
         callButton.isHidden = true
@@ -128,8 +124,6 @@ class DetailViewController: UIViewController {
         contactTextField.isHidden = false
         updateButton.isHidden = false
         navigationItem.rightBarButtonItem?.isEnabled = false
-        
-        
     }
     
     private func setupView() {
@@ -146,11 +140,6 @@ class DetailViewController: UIViewController {
         view.addSubview(nameTextField)
         view.addSubview(contactTextField)
         view.addSubview(updateButton)
-        
-//        nameLabel.isHidden = true
-//        contactNumber.isHidden = true
-//        callButton.isHidden = true
-//        deleteButton.isHidden = true
         nameTextField.isHidden = true
         contactTextField.isHidden = true
         updateButton.isHidden = true

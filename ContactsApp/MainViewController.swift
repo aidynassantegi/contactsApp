@@ -7,20 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, ContactsUpdater {
-    
-    func updateTableView(number: Int, newName: String, newNumber: String) {
-        contacts?[number].name = newName
-        contacts?[number].phoneNumber = newNumber
-    }
-    
-    func deleteContactBy(number: Int) {
-        contacts?.remove(at: number)
-        Contact.numberOfContact -= 1
-//        tableView.reloadData()
-    }
-    
-
+class MainViewController: UIViewController {
     private var contacts: [Contact]? {
         didSet {
             tableView.reloadData()
@@ -31,9 +18,7 @@ class ViewController: UIViewController, ContactsUpdater {
             }
         }
     }
-    
-    
-    
+
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundView = TableViewBackground()
@@ -48,19 +33,36 @@ class ViewController: UIViewController, ContactsUpdater {
     }
     
     @objc private func addContact() {
-//        if contacts == nil {
-//            contacts = []
-//        }
-//
-//        contacts?.append(Contact(name: "Monica", surname: "Bing", phoneNumber: "87770001122"))
-        
         let vc = AddViewController()
         vc.adder = self
         navigationController?.pushViewController(vc, animated: true)
     }
+
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+//MARK: - Table View Update methods
+extension MainViewController: AddContact , ContactsUpdater {
+    func deleteContactBy(number: Int) {
+        contacts?.remove(at: number)
+        Contact.numberOfContact -= 1
+    }
+    
+    func updateTableView(number: Int, newName: String, newNumber: String) {
+        contacts?[number].name = newName
+        contacts?[number].phoneNumber = newNumber
+    }
+    
+    func addNewContact(contact: Contact) {
+        if contacts != nil {
+            contacts?.append(contact)
+        }else {
+            contacts = [contact]
+        }
+    }
+}
+
+//MARK: - Table View Delegates
+extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         contacts?.count ?? 0
     }
@@ -102,18 +104,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 
-extension ViewController: AddContact {
-    func addNewContact(contact: Contact) {
-        if contacts != nil {
-            contacts?.append(contact)
-        }else {
-            contacts = [contact]
-        }
-    }
-}
-
 //MARK: - Setup and Set Constraints
-extension ViewController {
+extension MainViewController {
     private func setupView() {
         view.backgroundColor = .white
         title = "Contacts"
