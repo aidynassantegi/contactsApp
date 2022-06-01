@@ -7,12 +7,17 @@
 
 import UIKit
 
-class ViewController: UIViewController, DeleteContact {
+class ViewController: UIViewController, ContactsUpdater {
+    
+    func updateTableView(number: Int, newName: String, newNumber: String) {
+        contacts?[number].name = newName
+        contacts?[number].phoneNumber = newNumber
+    }
     
     func deleteContactBy(number: Int) {
         contacts?.remove(at: number)
         Contact.numberOfContact -= 1
-        tableView.reloadData()
+//        tableView.reloadData()
     }
     
 
@@ -78,7 +83,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = DetailViewController()
         vc.setContact(contact: contacts![indexPath.row])
-        vc.remover = self
+        vc.contactsUpdater = self
         vc.contactId = indexPath.row
         navigationController?.pushViewController(vc, animated: true)
     }

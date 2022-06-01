@@ -10,7 +10,7 @@ import UIKit
 
 struct Contact {
     static var numberOfContact = 0
-    let name: String
-    let phoneNumber: String
+    var name: String
+    var phoneNumber: String
     let contactImagePath: String
 }

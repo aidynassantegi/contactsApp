@@ -62,7 +62,7 @@ class AddViewController: UIViewController {
     @objc private func saveButtonPressed() {
         let imageBSet = ["b1", "b2", "b3"]
         let imageGSet = ["g1", "g2", "g3"]
-        let indexOfImage = Contact.numberOfContact % imageBSet.count
+        let indexOfImage = Contact.numberOfContact % 3
         Contact.numberOfContact += 1
         var contactImage: String
         if isMan {
